@@ -1,0 +1,13 @@
+#Check that there is 1 argument
+if [ $# != 1  ]
+then 
+echo "Usage: get_input [day]"
+fi
+#Check that the argument is a number
+if echo $1 | grep -q [^0123456789]
+then 
+echo "Usage: get_input [day]"
+fi
+session_cookie=$(cat session_cookie)
+#Download the input and save it to "Day_$1/input"
+curl -b"session=$session_cookie" https://adventofcode.com/2019/day/$1/input > Day_$1/input
